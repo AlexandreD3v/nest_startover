@@ -24,4 +24,7 @@ export class User {
         @Column()
         state: string;
 
+        @Column()
+        is_ative: boolean;
+
 }
