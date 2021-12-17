@@ -2,9 +2,11 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { HttpModule } from '@nestjs/axios';
+
 
 @Module({
-  imports: [UsersModule, AuthModule, TypeOrmModule.forRoot()],
+  imports: [UsersModule, AuthModule, TypeOrmModule.forRoot(), HttpModule],
   controllers: [],
   providers: [],
 })

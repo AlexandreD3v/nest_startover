@@ -5,12 +5,16 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from './users.repository';
 import { User } from './entities/user.entity';
+import { HttpService } from '@nestjs/axios';
+import { AxiosResponse } from 'axios';
+import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
+    private httpService: HttpService
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -32,6 +36,25 @@ export class UsersService {
   async findCpf(cpf: string) {
     const res = await this.userRepository.findOne({ where: { cpf: cpf } });
     return { obj: res, msg: 'This action returns a #${id} user by CPF'};
+  }
+
+/*   async findAddress(cep: string){
+    let requestOptions = {
+      json: true,
+      uri: `https://viacep.com.br/ws/${cep}/json`,
+      timeout: {timeout : 5000}
+    };
+    return requestPromise(requestOptions);
+  } */
+
+  async findAddress(cep: string): Promise<Observable<AxiosResponse<[]>>> {
+    return this.httpService.get(`https://viacep.com.br/ws/${cep}/json`, {
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).pipe(
+        map(response => response.data),
+    );
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

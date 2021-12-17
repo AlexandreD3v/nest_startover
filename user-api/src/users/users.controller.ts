@@ -30,6 +30,11 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Get('/findAddres/:cep')
+  findAddress(@Param('cep') cep: string) {
+    return this.usersService.findAddress(cep);
+  }
+
   @Get('/list/:id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
