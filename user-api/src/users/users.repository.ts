@@ -23,14 +23,14 @@ export class UserRepository extends Repository<User> {
     
     user.password = await this.hashPassword(password, user.salt);
     try {
-      await user;
+      await this.save(user);
       delete user.password;
       delete user.salt;
       return user;
     } catch (error) {
     
         throw new InternalServerErrorException(
-          'Erro ao salvar o usuário no banco de dados',
+          'Erro' + error,
         );
       
     }

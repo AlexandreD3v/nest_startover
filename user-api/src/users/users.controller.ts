@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
 import { CreateSimpleUserDto } from './dto/create-simple-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
 import { AdminDto } from './dto/create-admin.dto';
 
 @Controller('users')
@@ -21,7 +21,7 @@ export class UsersController {
   }
 
   @Post('/create')
-  create(@Body(ValidationPipe) createUserDto: CreateSimpleUserDto) {
+  create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 

@@ -13,7 +13,7 @@ export class UsersService {
     private userRepository: UserRepository,
   ) {}
 
-  async create(createUserDto: CreateSimpleUserDto) {
+  async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     await this.userRepository.save(createUserDto);
     return { obj: user, user: 'This action adds a new user'};
