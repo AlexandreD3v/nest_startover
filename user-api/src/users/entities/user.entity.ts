@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+        BaseEntity,
+        Entity,
+        Unique,
+        PrimaryGeneratedColumn,
+        Column,
+        CreateDateColumn,
+        UpdateDateColumn,
+      } from 'typeorm';
 
 @Entity()
 export class User {
@@ -27,4 +35,9 @@ export class User {
         @Column()
         is_ative: boolean;
 
+        @CreateDateColumn()
+        createdAt: Date;
+      
+        @UpdateDateColumn()
+        updatedAt: Date;
 }
