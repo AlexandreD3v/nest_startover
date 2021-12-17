@@ -22,16 +22,18 @@ export class UsersService {
     return { obj: res, msg: 'This action returns all users'};
   }
 
-  findOne(id: number) {
-    
-    return { obj: this.userRepository.findByIds([id]), msg: 'This action returns a #${id} user'};
+  async findOne(id: number) {
+    const res = await this.userRepository.findOne({ where: { id: id } });
+    return { obj: res, msg: 'This action returns a #${id} user'};
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.update({ id }, updateUserDto);
+    return { obj: user, user: '`This action updates a #${id} user'};
   }
 
-  remove(id: number) {
+  async remove(id: number) {
+    await this.userRepository.delete({ id });
     return `This action removes a #${id} user`;
   }
 }

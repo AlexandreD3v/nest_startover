@@ -13,7 +13,7 @@ export class User {
         phone: string;
 
         @Column()
-        CPF: string;
+        cpf: string;
 
         @Column()
         logradouro: string;
