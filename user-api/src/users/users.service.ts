@@ -38,15 +38,6 @@ export class UsersService {
     return { obj: res, msg: 'This action returns a #${id} user by CPF'};
   }
 
-/*   async findAddress(cep: string){
-    let requestOptions = {
-      json: true,
-      uri: `https://viacep.com.br/ws/${cep}/json`,
-      timeout: {timeout : 5000}
-    };
-    return requestPromise(requestOptions);
-  } */
-
   async findAddress(cep: string): Promise<Observable<AxiosResponse<[]>>> {
     return this.httpService.get(`https://viacep.com.br/ws/${cep}/json`, {
       headers: {

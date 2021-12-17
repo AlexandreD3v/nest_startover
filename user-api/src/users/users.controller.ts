@@ -5,7 +5,7 @@ import { CreateSimpleUserDto } from './dto/create-simple-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AdminDto } from './dto/create-admin.dto';
 
-@Controller('users')
+@Controller('users-api')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
