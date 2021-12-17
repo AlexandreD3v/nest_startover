@@ -1,14 +1,27 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateSimpleUserDto } from './dto/create-simple-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+
+import { AdminDto } from './dto/create-admin.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Post('/admin')
+  async createAdminUser(
+    @Body() createUserDto: CreateSimpleUserDto,
+  ): Promise<AdminDto> {
+    const user = await this.usersService.createAdminUser(createUserDto);
+    return {
+      user,
+      message: 'Administrador cadastrado com sucesso',
+    };
+  }
+
   @Post('/create')
-  create(@Body(ValidationPipe) createUserDto: CreateUserDto) {
+  create(@Body(ValidationPipe) createUserDto: CreateSimpleUserDto) {
     return this.usersService.create(createUserDto);
   }
 

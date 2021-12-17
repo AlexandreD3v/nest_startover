@@ -15,13 +15,19 @@ export class CreateUserDto {
       })
     phone: string;
 
-    @IsNotEmpty({message:'O nome não pode ser vazio!'})
+    @IsNotEmpty({message:'O CPF não pode ser vazio!'})
     @MinLength(11, {
         message: 'O CPF deve ter no mínimo 11 dígitos',
       })
     cpf: string;
 
-    @IsNotEmpty({message:'O nome não pode ser vazio!'})
+    @IsNotEmpty({message:'O CEP não pode ser vazio!'})
+    @MinLength(8, {
+        message: 'O CEP deve ter no mínimo 8 dígitos',
+      })
+    cep: string;
+
+    @IsNotEmpty({message:'O logradouro não pode ser vazio!'})
     logradouro: string;
 
     @IsNotEmpty({message:'A cidade não pode estar vazia!'})

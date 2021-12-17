@@ -14,30 +14,45 @@ export class User {
         @PrimaryGeneratedColumn()
         id: number;
 
-        @Column()
+        @Column({ nullable: false })
         name: string;
 
-        @Column()
+        @Column({ nullable: false })
         phone: string;
 
-        @Column()
+        @Column({ nullable: false })
         cpf: string;
 
-        @Column()
+        @Column({ nullable: false })
+        cep: string;
+
+        @Column({ nullable: false })
         logradouro: string;
 
-        @Column()
+        @Column({ nullable: false })
         city: string;
 
-        @Column()
+        @Column({ nullable: false })
         state: string;
 
-        @Column()
+        @Column({ nullable: false })
         is_ative: boolean;
+        
+        @Column({ nullable: false })
+        password: string;
 
-        @CreateDateColumn()
+        @CreateDateColumn({ nullable: false })
         createdAt: Date;
       
-        @UpdateDateColumn()
+        @UpdateDateColumn({ nullable: false })
         updatedAt: Date;
+        
+        @Column({ nullable: false })
+        salt: string;
+      
+        @Column({ nullable: true, type: 'varchar', length: 64 })
+        confirmationToken: string;
+      
+        @Column({ nullable: true, type: 'varchar', length: 64 })
+        recoverToken: string;
 }
