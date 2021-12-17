@@ -22,6 +22,11 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
+  @Get('/listCPF/:cpf')
+  findCpf(@Param('cpf') cpf: string) {
+    return this.usersService.findCpf(cpf);
+  }
+
   @Patch('/update/:id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);

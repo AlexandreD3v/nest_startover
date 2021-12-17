@@ -27,6 +27,11 @@ export class UsersService {
     return { obj: res, msg: 'This action returns a #${id} user'};
   }
 
+  async findCpf(cpf: string) {
+    const res = await this.userRepository.findOne({ where: { cpf: cpf } });
+    return { obj: res, msg: 'This action returns a #${id} user by CPF'};
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto) {
     const user = await this.userRepository.update({ id }, updateUserDto);
     return { obj: user, user: '`This action updates a #${id} user'};
