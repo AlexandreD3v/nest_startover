@@ -41,13 +41,23 @@ export class UsersService {
   }
 
   async findAddress(cep: string): Promise<Observable<AxiosResponse<[]>>> {
-    return this.httpService.get(`https://viacep.com.br/ws/${cep}/json`, {
-      headers: {
+
+    const cachedvalue = await this.cacheManager.get(cep);
+
+    //if(!cachedvalue){
+      let address = this.httpService.get(`https://viacep.com.br/ws/${cep}/json`, {
+        headers: {
           'Accept': 'application/json'
-      }
-    }).pipe(
+        }
+      }).pipe(
         map(response => response.data),
-    );
+        );
+        await this.cacheManager.set(cep, address, { ttl: 1000 });
+        return address;
+   /*  }
+    else{
+      return cachedvalue;
+    }  */     
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
