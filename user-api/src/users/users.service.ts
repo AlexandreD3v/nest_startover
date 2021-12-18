@@ -1,4 +1,4 @@
-import { Injectable, Inject, UnprocessableEntityException } from '@nestjs/common';
+import { Injectable, Inject, UnprocessableEntityException, CACHE_MANAGER } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateSimpleUserDto } from './dto/create-simple-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -8,13 +8,15 @@ import { User } from './entities/user.entity';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { map, Observable } from 'rxjs';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(UserRepository)
     private userRepository: UserRepository,
-    private httpService: HttpService
+    private httpService: HttpService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
 
   async create(createUserDto: CreateUserDto) {

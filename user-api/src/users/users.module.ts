@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { DatabaseModule } from '../database/database.module';
@@ -11,6 +11,6 @@ import { HttpModule } from '@nestjs/axios';
 @Module({
   controllers: [UsersController],
   providers: [UsersService, ...usersProviders],
-  imports: [DatabaseModule, TypeOrmModule.forFeature([UserRepository]), HttpModule]
+  imports: [DatabaseModule, TypeOrmModule.forFeature([UserRepository]), HttpModule, CacheModule.register()]
 })
 export class UsersModule {}
