@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, CacheInterceptor, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateSimpleUserDto } from './dto/create-simple-user.dto';
@@ -30,7 +30,8 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('/findAddres/:cep')
+  @UseInterceptors(CacheInterceptor)
+  @Get('/findAddress/:cep')
   findAddress(@Param('cep') cep: string) {
     return this.usersService.findAddress(cep);
   }

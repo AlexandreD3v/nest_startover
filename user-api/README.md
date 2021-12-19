@@ -22,17 +22,31 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Repositorio de desenvolvimento de atividade de teste utilizando [Nest.js](https://github.com/nestjs/nest) framework.
 
-## Installation
+A Api (/users-api) disponibiliza dos seguintes serviços:
+
+- Criar novo usuário (/users-api)
+
+- Listagem de usuários
+
+- Editar usuário
+
+- Recuperar usuário por CPF
+
+- Remover usuário
+
+- Recuperar endereço por CEP
+
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Executando o app
 
 ```bash
 # development
@@ -45,7 +59,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Testes (Em implementação)
 
 ```bash
 # unit tests
@@ -60,13 +74,12 @@ $ npm run test:cov
 
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nest é um projeto de código aberto licenciado pelo MIT. Pode crescer graças aos anos de patrocinadores e ao apoio de patrocinadores incríveis. Você queira se juntar a eles, [leia mais aqui] (https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
+- Autor - [Alexandre J. Corrêa](https://github.com/AlexandreD3v)
 - Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
